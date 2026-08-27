@@ -84,6 +84,60 @@ body {
   font-size: 0.875rem;
 }
 
+.series-control,
+.series-header {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 4px 18px rgb(0 0 0 / 18%);
+}
+
+.series-control a,
+.series-header a {
+  padding: 6px 9px;
+  border-radius: 5px;
+  color: #171717;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.series-control a:hover,
+.series-header a:hover {
+  background: #eeeeee;
+}
+
+.series-marker {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 45%);
+}
+
+.series-header {
+  display: block;
+  right: 16px;
+  left: auto;
+  min-width: 220px;
+  color: #171717;
+}
+
+.series-header h1 {
+  margin: 8px 0 2px;
+  font-size: 1rem;
+}
+
+.series-header p {
+  margin: 0;
+  color: #555555;
+  font-size: 0.8125rem;
+}
+
 .date-control input {
   width: 100%;
   accent-color: #e10600;

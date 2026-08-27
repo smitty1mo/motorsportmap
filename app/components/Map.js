@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   Map as MapLibreMap,
   Marker,
@@ -237,6 +238,12 @@ export default function Map() {
   return (
     <main className="relative h-screen w-full">
       <div ref={mapContainer} className="h-full w-full" />
+      <nav className="series-control" aria-label="Series">
+        <Link href="/series/f1">F1</Link>
+        <Link href="/series/motogp">MotoGP</Link>
+        <Link href="/series/wec">WEC</Link>
+        <Link href="/series/indycar">IndyCar</Link>
+      </nav>
       <label className="date-control">
         <span>Viewing date: {viewingDate}</span>
         <input
