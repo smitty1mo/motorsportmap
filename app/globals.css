@@ -207,22 +207,6 @@ body {
   outline-offset: 2px;
 }
 
-.weather-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  display: grid;
-  width: 24px;
-  height: 24px;
-  place-items: center;
-  border: 1px solid #ffffff;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #182126;
-  font-size: 15px;
-  line-height: 1;
-}
-
 .series-count {
   position: absolute;
   right: -9px;
@@ -374,13 +358,6 @@ body {
   font-weight: 700;
 }
 
-.panel-weather {
-  margin: 16px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid rgb(24 33 38 / 12%);
-  font-size: 0.85rem;
-}
-
 .series-control,
 .series-header {
   position: absolute;
@@ -438,16 +415,6 @@ body {
 .date-control input {
   width: 100%;
   accent-color: #e10600;
-}
-
-.weather-control {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.weather-control input {
-  width: auto;
 }
 
 @media (max-width: 640px) {
