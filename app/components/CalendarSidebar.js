@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import circuits from "../../data/circuits.json";
 import calendar from "../../data/calendar.json";
 
@@ -21,8 +21,11 @@ export const calendarEvents = calendar
   .filter((event) => event.circuit)
   .sort((first, second) => first.startDate.localeCompare(second.startDate));
 
-export function getNearestEvent(circuitId, viewingDate) {
-  const events = calendarEvents.filter((event) => event.circuitId === circuitId);
+export function getNearestEvent(circuitId, viewingDate, seriesId) {
+  const events = calendarEvents.filter(
+    (event) =>
+      event.circuitId === circuitId && (!seriesId || event.series === seriesId),
+  );
   if (events.length === 0) return null;
 
   const viewingTime = Date.parse(viewingDate);
@@ -50,36 +53,46 @@ export default function CalendarSidebar({
   selectedEventId,
   onEventSelect,
   message,
+  seriesId,
 }) {
   const listRef = useRef(null);
   const eventRefs = useRef(new Map());
   const scrollTimeout = useRef(null);
+  const events = useMemo(
+    () =>
+      seriesId
+        ? calendarEvents.filter((event) => event.series === seriesId)
+        : calendarEvents,
+    [seriesId],
+  );
   const activeIds = new Set(activeEventIds);
 
   useEffect(() => {
     const currentActiveIds = new Set(activeEventIds);
     clearTimeout(scrollTimeout.current);
     scrollTimeout.current = setTimeout(() => {
-      const targetEvent = calendarEvents.find((event) => currentActiveIds.has(eventKey(event))) ||
-        calendarEvents.find((event) => Date.parse(event.startDate) >= Date.parse(viewingDate)) ||
-        calendarEvents[calendarEvents.length - 1];
+      const targetEvent = events.find((event) => currentActiveIds.has(eventKey(event))) ||
+        events.find((event) => Date.parse(event.startDate) >= Date.parse(viewingDate)) ||
+        events[events.length - 1];
       const target = targetEvent && eventRefs.current.get(eventKey(targetEvent));
       target?.scrollIntoView({ block: "center", behavior: "smooth" });
     }, 350);
 
     return () => clearTimeout(scrollTimeout.current);
-  }, [viewingDate, activeEventIds]);
+  }, [viewingDate, activeEventIds, events]);
 
   return (
     <aside className="calendar-sidebar">
       <header className="calendar-sidebar-header">
         <p className="panel-kicker">Season schedule</p>
         <h1>Race calendar</h1>
-        <p>{calendarEvents.length} events across four series</p>
+        <p>
+          {events.length} events{seriesId ? " in this series" : " across four series"}
+        </p>
       </header>
       {message && <p className="calendar-message">{message}</p>}
       <div className="calendar-list" ref={listRef}>
-        {calendarEvents.map((event) => {
+        {events.map((event) => {
           const key = eventKey(event);
           const isActive = activeIds.has(key);
           const isSelected = selectedEventId === key;
