@@ -117,6 +117,7 @@ function createCircuitPopup(circuit) {
 export default function Map() {
   const mapContainer = useRef(null);
   const markersRef = useRef([]);
+  const [mapStatus, setMapStatus] = useState("loading");
   const [viewingDate, setViewingDate] = useState(getInitialViewingDate);
   const [weatherEnabled, setWeatherEnabled] = useState(false);
   const [weatherByCircuit, setWeatherByCircuit] = useState({});
@@ -132,6 +133,16 @@ export default function Map() {
       style: "https://tiles.openfreemap.org/styles/liberty",
       center: [0, 20],
       zoom: 1.2,
+    });
+
+    let usedFallbackStyle = false;
+    map.on("load", () => setMapStatus("ready"));
+    map.on("error", (event) => {
+      if (!usedFallbackStyle && event.error) {
+        usedFallbackStyle = true;
+        setMapStatus("fallback");
+        map.setStyle("https://demotiles.maplibre.org/style.json");
+      }
     });
 
     map.addControl(new NavigationControl(), "top-right");
@@ -240,8 +251,12 @@ export default function Map() {
   }, [viewingDate, weatherEnabled]);
 
   return (
-    <main className="relative h-screen w-full">
-      <div ref={mapContainer} className="h-full w-full" />
+    <main className="relative map-shell">
+      <div ref={mapContainer} className="map-canvas" />
+      {mapStatus === "loading" && <p className="map-status">Loading map...</p>}
+      {mapStatus === "fallback" && (
+        <p className="map-status">Using backup map style</p>
+      )}
       <nav className="series-control" aria-label="Series">
         <Link href="/series/f1">F1</Link>
         <Link href="/series/motogp">MotoGP</Link>
