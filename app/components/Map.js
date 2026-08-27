@@ -10,6 +10,10 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import circuits from "../../data/circuits.json";
 import calendar from "../../data/calendar.json";
+import CalendarSidebar, {
+  eventKey,
+  getNearestEvent,
+} from "./CalendarSidebar";
 
 const seasonStart = calendar.reduce(
   (earliest, round) =>
@@ -133,12 +137,41 @@ function createCircuitMarker(circuit) {
 export default function Map() {
   const mapContainer = useRef(null);
   const markersRef = useRef([]);
+  const viewingDateRef = useRef(null);
   const [mapStatus, setMapStatus] = useState("loading");
   const [viewingDate, setViewingDate] = useState(getInitialViewingDate);
   const [weatherEnabled, setWeatherEnabled] = useState(false);
   const [weatherByCircuit, setWeatherByCircuit] = useState({});
   const [weatherStatus, setWeatherStatus] = useState("idle");
   const [selectedCircuit, setSelectedCircuit] = useState(null);
+  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [sidebarMessage, setSidebarMessage] = useState("");
+
+  useEffect(() => {
+    viewingDateRef.current = viewingDate;
+  }, [viewingDate]);
+
+  const activeRounds = getActiveRounds(viewingDate);
+  const activeEventIds = activeRounds.map(eventKey);
+
+  function handleCircuitClick(circuit) {
+    const nearestEvent = getNearestEvent(circuit.id, viewingDateRef.current);
+    setSelectedCircuit(circuit);
+    setSidebarMessage(
+      nearestEvent ? "" : `${circuit.name} is not on the current calendar.`,
+    );
+    if (nearestEvent) {
+      setViewingDate(getMonday(nearestEvent.startDate).toISOString().slice(0, 10));
+      setSelectedEventId(eventKey(nearestEvent));
+    }
+  }
+
+  function handleEventSelect(event) {
+    setSidebarMessage("");
+    setSelectedCircuit(event.circuit);
+    setSelectedEventId(eventKey(event));
+    setViewingDate(getMonday(event.startDate).toISOString().slice(0, 10));
+  }
 
   useEffect(() => {
     if (!mapContainer.current) {
@@ -245,7 +278,7 @@ export default function Map() {
 
       markerElement.addEventListener("click", (event) => {
         event.stopPropagation();
-        setSelectedCircuit(circuit);
+        handleCircuitClick(circuit);
       });
 
       return marker;
@@ -275,7 +308,7 @@ export default function Map() {
       const weatherBadge = marker.getElement().querySelector(".weather-badge");
       const weather = weatherByCircuit[circuitId];
       marker.getElement().style.opacity = isActive ? "1" : "0.28";
-      marker.getElement().style.pointerEvents = isActive ? "auto" : "none";
+      marker.getElement().style.pointerEvents = "auto";
       weatherBadge.hidden = !isActive || !weatherEnabled || !weather;
       if (weather) {
         weatherBadge.textContent = weather.icon;
@@ -352,7 +385,15 @@ export default function Map() {
   }, [viewingDate, weatherEnabled]);
 
   return (
-    <main className="relative map-shell">
+    <main className="map-shell">
+      <CalendarSidebar
+        viewingDate={viewingDate}
+        activeEventIds={activeEventIds}
+        selectedEventId={selectedEventId}
+        onEventSelect={handleEventSelect}
+        message={sidebarMessage}
+      />
+      <section className="map-stage">
       <div ref={mapContainer} className="map-canvas" />
       {mapStatus === "loading" && <p className="map-status">Loading map...</p>}
       {mapStatus === "fallback" && (
@@ -429,6 +470,7 @@ export default function Map() {
             " (no active rounds)"}
         </span>
       </label>
+      </section>
     </main>
   );
 }

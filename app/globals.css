@@ -34,6 +34,139 @@ body {
   height: 100dvh;
 }
 
+.map-shell {
+  display: flex;
+  overflow: hidden;
+}
+
+.map-stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.calendar-sidebar {
+  z-index: 3;
+  display: flex;
+  width: 330px;
+  flex: 0 0 330px;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid rgb(24 33 38 / 15%);
+  background: #f7f5ef;
+  color: var(--ink);
+}
+
+.calendar-sidebar-header {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgb(24 33 38 / 12%);
+}
+
+.calendar-sidebar-header .panel-kicker {
+  margin-bottom: 8px;
+}
+
+.calendar-sidebar-header h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+
+.calendar-sidebar-header > p:last-child {
+  margin: 5px 0 0;
+  color: #68747a;
+  font-size: 0.78rem;
+}
+
+.calendar-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 10px;
+  scroll-behavior: smooth;
+}
+
+.calendar-event {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 8px 10px;
+  padding: 11px 10px;
+  border: 1px solid transparent;
+  border-bottom-color: rgb(24 33 38 / 10%);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.calendar-event:hover {
+  background: #ebe9e1;
+}
+
+.calendar-event.is-active {
+  border-color: rgb(225 6 0 / 28%);
+  border-radius: 6px;
+  background: #fff1ed;
+  box-shadow: inset 4px 0 0 var(--accent);
+}
+
+.calendar-event.is-selected {
+  outline: 2px solid #182126;
+  outline-offset: -2px;
+}
+
+.calendar-event-series {
+  align-self: start;
+  padding: 4px 3px;
+  border-left: 4px solid;
+  border-left-color: #68747a;
+  color: #68747a;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.calendar-event-series[data-series="f1"] { border-left-color: #e10600; color: #b50500; }
+.calendar-event-series[data-series="motogp"] { border-left-color: #00a8e8; color: #007fae; }
+.calendar-event-series[data-series="wec"] { border-left-color: #f5a623; color: #a56300; }
+.calendar-event-series[data-series="indycar"] { border-left-color: #41a63c; color: #2e7c2a; }
+
+.calendar-event-details,
+.calendar-event time {
+  min-width: 0;
+}
+
+.calendar-event-details strong,
+.calendar-event-details span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-event-details strong {
+  font-size: 0.78rem;
+}
+
+.calendar-event-details span,
+.calendar-event time {
+  color: #68747a;
+  font-size: 0.7rem;
+}
+
+.calendar-event time {
+  grid-column: 2;
+}
+
+.calendar-message {
+  margin: 10px 14px 0;
+  padding: 8px 10px;
+  border-left: 3px solid var(--accent);
+  background: #fff1ed;
+  font-size: 0.72rem;
+}
+
 .map-status {
   position: absolute;
   top: 16px;
@@ -318,6 +451,30 @@ body {
 }
 
 @media (max-width: 640px) {
+  .calendar-sidebar {
+    position: absolute;
+    right: 12px;
+    bottom: 112px;
+    left: 12px;
+    width: auto;
+    height: min(52dvh, 430px);
+    border: 1px solid rgb(24 33 38 / 15%);
+    border-radius: 8px;
+    box-shadow: 0 8px 28px rgb(24 33 38 / 22%);
+  }
+
+  .calendar-sidebar-header {
+    padding: 14px 16px 10px;
+  }
+
+  .calendar-sidebar-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .calendar-list {
+    padding: 6px;
+  }
+
   .series-control {
     top: 12px;
     right: 12px;
