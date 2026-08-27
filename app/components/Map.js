@@ -266,7 +266,10 @@ export default function Map() {
       const scale = map.getZoom() < 3 ? "small" : map.getZoom() < 6 ? "medium" : "large";
       markersRef.current.forEach(({ marker }) => {
         marker.getElement().dataset.zoom = scale;
-        marker.getElement().style.visibility = map.getZoom() < 4 ? "hidden" : "visible";
+        marker.getElement().style.visibility =
+          marker.getElement().dataset.active === "true" || map.getZoom() >= 4
+            ? "visible"
+            : "hidden";
       });
     };
 
@@ -308,12 +311,17 @@ export default function Map() {
       const weatherBadge = marker.getElement().querySelector(".weather-badge");
       const weather = weatherByCircuit[circuitId];
       marker.getElement().style.opacity = isActive ? "1" : "0.28";
+      marker.getElement().dataset.active = isActive ? "true" : "false";
       marker.getElement().style.pointerEvents = "auto";
       weatherBadge.hidden = !isActive || !weatherEnabled || !weather;
       if (weather) {
         weatherBadge.textContent = weather.icon;
         weatherBadge.title = weather.label;
       }
+      marker.getElement().style.visibility =
+        isActive || window.matchMedia("(min-width: 641px)").matches
+          ? "visible"
+          : "hidden";
     });
   }, [viewingDate, weatherByCircuit, weatherEnabled]);
 
