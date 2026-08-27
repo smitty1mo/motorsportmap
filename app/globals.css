@@ -33,6 +33,7 @@ body {
   border-radius: 999px;
   box-shadow: 0 1px 4px rgb(0 0 0 / 45%);
   cursor: pointer;
+  transition: opacity 160ms ease;
 }
 
 .circuit-marker:focus-visible {
@@ -48,4 +49,27 @@ body {
 .maplibregl-popup-content span {
   margin-top: 2px;
   color: #555555;
+}
+
+.date-control {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  display: grid;
+  gap: 8px;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 4px 18px rgb(0 0 0 / 18%);
+  color: #171717;
+  font-size: 0.875rem;
+}
+
+.date-control input {
+  width: 100%;
+  accent-color: #e10600;
 }
