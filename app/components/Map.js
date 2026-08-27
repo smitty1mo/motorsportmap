@@ -24,6 +24,17 @@ const seasonEnd = calendar.reduce(
 const dayMilliseconds = 24 * 60 * 60 * 1000;
 const seasonStartTime = Date.parse(seasonStart);
 const seasonEndTime = Date.parse(seasonEnd);
+const weekMilliseconds = 7 * dayMilliseconds;
+
+function getMonday(date) {
+  const monday = new Date(`${date}T00:00:00Z`);
+  const day = monday.getUTCDay();
+  monday.setUTCDate(monday.getUTCDate() - (day === 0 ? 6 : day - 1));
+  return monday;
+}
+
+const seasonStartWeek = getMonday(seasonStart);
+const seasonEndWeek = getMonday(seasonEnd);
 const weatherCodePresentation = {
   0: ["Clear", "☀"],
   1: ["Mostly clear", "🌤"],
@@ -49,11 +60,13 @@ const weatherCodePresentation = {
 };
 
 function dateToSliderValue(date) {
-  return Math.round((Date.parse(date) - seasonStartTime) / dayMilliseconds);
+  return Math.round(
+    (getMonday(date).getTime() - seasonStartWeek.getTime()) / weekMilliseconds,
+  );
 }
 
 function sliderValueToDate(value) {
-  return new Date(seasonStartTime + value * dayMilliseconds)
+  return new Date(seasonStartWeek.getTime() + value * weekMilliseconds)
     .toISOString()
     .slice(0, 10);
 }
@@ -61,7 +74,9 @@ function sliderValueToDate(value) {
 function getInitialViewingDate() {
   const today = Date.now();
   const clampedTime = Math.min(Math.max(today, seasonStartTime), seasonEndTime);
-  return new Date(clampedTime).toISOString().slice(0, 10);
+  return getMonday(new Date(clampedTime).toISOString().slice(0, 10))
+    .toISOString()
+    .slice(0, 10);
 }
 
 const seriesColors = {
@@ -72,8 +87,13 @@ const seriesColors = {
 };
 
 export function getActiveRounds(date) {
+  const weekStart = getMonday(date).toISOString().slice(0, 10);
+  const weekEnd = new Date(getMonday(date).getTime() + 6 * dayMilliseconds)
+    .toISOString()
+    .slice(0, 10);
+
   return calendar.filter(
-    (round) => round.startDate <= date && round.endDate >= date,
+    (round) => round.startDate <= weekEnd && round.endDate >= weekStart,
   );
 }
 
@@ -216,7 +236,11 @@ export default function Map() {
               latitude: circuit.lat.toString(),
               longitude: circuit.lon.toString(),
               start_date: viewingDate,
-              end_date: viewingDate,
+              end_date: new Date(
+                getMonday(viewingDate).getTime() + 6 * dayMilliseconds,
+              )
+                .toISOString()
+                .slice(0, 10),
               daily: "weather_code,temperature_2m_max",
               timezone: "auto",
             });
@@ -264,11 +288,13 @@ export default function Map() {
         <Link href="/series/indycar">IndyCar</Link>
       </nav>
       <label className="date-control">
-        <span>Viewing date: {viewingDate}</span>
+        <span>
+          Viewing week: {viewingDate} to {sliderValueToDate(dateToSliderValue(viewingDate) + 1)}
+        </span>
         <input
           type="range"
           min="0"
-          max={dateToSliderValue(seasonEnd)}
+          max={dateToSliderValue(seasonEndWeek.toISOString().slice(0, 10))}
           value={dateToSliderValue(viewingDate)}
           onChange={(event) =>
             setViewingDate(sliderValueToDate(Number(event.target.value)))
