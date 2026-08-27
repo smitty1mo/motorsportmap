@@ -23,6 +23,7 @@ const seasonEnd = calendar.reduce(
 );
 const dayMilliseconds = 24 * 60 * 60 * 1000;
 const seasonStartTime = Date.parse(seasonStart);
+const seasonEndTime = Date.parse(seasonEnd);
 const weatherCodePresentation = {
   0: ["Clear", "☀"],
   1: ["Mostly clear", "🌤"],
@@ -55,6 +56,12 @@ function sliderValueToDate(value) {
   return new Date(seasonStartTime + value * dayMilliseconds)
     .toISOString()
     .slice(0, 10);
+}
+
+function getInitialViewingDate() {
+  const today = Date.now();
+  const clampedTime = Math.min(Math.max(today, seasonStartTime), seasonEndTime);
+  return new Date(clampedTime).toISOString().slice(0, 10);
 }
 
 const seriesColors = {
@@ -110,9 +117,7 @@ function createCircuitPopup(circuit) {
 export default function Map() {
   const mapContainer = useRef(null);
   const markersRef = useRef([]);
-  const [viewingDate, setViewingDate] = useState(() =>
-    new Date().toISOString().slice(0, 10),
-  );
+  const [viewingDate, setViewingDate] = useState(getInitialViewingDate);
   const [weatherEnabled, setWeatherEnabled] = useState(false);
   const [weatherByCircuit, setWeatherByCircuit] = useState({});
   const [weatherStatus, setWeatherStatus] = useState("idle");
@@ -124,7 +129,7 @@ export default function Map() {
 
     const map = new MapLibreMap({
       container: mapContainer.current,
-      style: "https://demotiles.maplibre.org/style.json",
+      style: "https://tiles.openfreemap.org/styles/liberty",
       center: [0, 20],
       zoom: 1.2,
     });
@@ -132,15 +137,10 @@ export default function Map() {
     map.addControl(new NavigationControl(), "top-right");
 
     const markers = circuits.map((circuit) => {
-      const marker = new Marker({
-        element: createCircuitMarker(circuit),
-      })
+      const markerElement = createCircuitMarker(circuit);
+      const marker = new Marker({ element: markerElement })
         .setLngLat([circuit.lon, circuit.lat])
-        .setPopup(
-          new Popup({ offset: 12 }).setDOMContent(
-            createCircuitPopup(circuit),
-          ),
-        )
+        .setPopup(new Popup({ offset: 12 }).setDOMContent(createCircuitPopup(circuit)))
         .addTo(map);
 
       return marker;
@@ -166,7 +166,7 @@ export default function Map() {
       const isActive = activeCircuitIds.has(circuitId);
       const weatherBadge = marker.getElement().querySelector(".weather-badge");
       const weather = weatherByCircuit[circuitId];
-      marker.getElement().style.opacity = isActive ? "1" : "0";
+      marker.getElement().style.opacity = isActive ? "1" : "0.28";
       marker.getElement().style.pointerEvents = isActive ? "auto" : "none";
       weatherBadge.hidden = !isActive || !weatherEnabled || !weather;
       if (weather) {
@@ -187,6 +187,10 @@ export default function Map() {
       ),
     );
     const controller = new AbortController();
+    if (activeCircuits.length === 0) {
+      return () => controller.abort();
+    }
+
     const timeout = setTimeout(async () => {
       setWeatherStatus("loading");
       try {
@@ -264,6 +268,8 @@ export default function Map() {
           Show weather
           {weatherEnabled && weatherStatus === "loading" && " (loading...)"}
           {weatherEnabled && weatherStatus === "error" && " (unavailable)"}
+          {weatherEnabled && getActiveRounds(viewingDate).length === 0 &&
+            " (no active rounds)"}
         </span>
       </label>
     </main>

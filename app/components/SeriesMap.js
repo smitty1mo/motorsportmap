@@ -26,7 +26,7 @@ export default function SeriesMap({ circuits, rounds, seriesId }) {
     const color = seriesColors[seriesId] || "#e10600";
     const map = new MapLibreMap({
       container: mapContainer.current,
-      style: "https://demotiles.maplibre.org/style.json",
+      style: "https://tiles.openfreemap.org/styles/liberty",
       center: [0, 20],
       zoom: 1.2,
     });
