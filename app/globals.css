@@ -41,6 +41,21 @@ body {
   outline-offset: 2px;
 }
 
+.weather-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 10px;
+  line-height: 1;
+}
+
 .maplibregl-popup-content strong,
 .maplibregl-popup-content span {
   display: block;
@@ -72,4 +87,14 @@ body {
 .date-control input {
   width: 100%;
   accent-color: #e10600;
+}
+
+.weather-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weather-control input {
+  width: auto;
 }

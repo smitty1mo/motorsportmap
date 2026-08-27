@@ -22,6 +22,29 @@ const seasonEnd = calendar.reduce(
 );
 const dayMilliseconds = 24 * 60 * 60 * 1000;
 const seasonStartTime = Date.parse(seasonStart);
+const weatherCodePresentation = {
+  0: ["Clear", "☀"],
+  1: ["Mostly clear", "🌤"],
+  2: ["Partly cloudy", "⛅"],
+  3: ["Overcast", "☁"],
+  45: ["Fog", "🌫"],
+  48: ["Rime fog", "🌫"],
+  51: ["Light drizzle", "🌦"],
+  53: ["Drizzle", "🌦"],
+  55: ["Heavy drizzle", "🌧"],
+  61: ["Light rain", "🌦"],
+  63: ["Rain", "🌧"],
+  65: ["Heavy rain", "🌧"],
+  71: ["Light snow", "🌨"],
+  73: ["Snow", "🌨"],
+  75: ["Heavy snow", "❄"],
+  80: ["Rain showers", "🌦"],
+  81: ["Showers", "🌧"],
+  82: ["Heavy showers", "🌧"],
+  95: ["Thunderstorm", "⛈"],
+  96: ["Storm and hail", "⛈"],
+  99: ["Storm and hail", "⛈"],
+};
 
 function dateToSliderValue(date) {
   return Math.round((Date.parse(date) - seasonStartTime) / dayMilliseconds);
@@ -63,6 +86,11 @@ function createCircuitMarker(circuit) {
     )
     .join(", ")})`;
 
+  const weatherBadge = document.createElement("span");
+  weatherBadge.className = "weather-badge";
+  weatherBadge.hidden = true;
+  markerElement.append(weatherBadge);
+
   return markerElement;
 }
 
@@ -84,6 +112,9 @@ export default function Map() {
   const [viewingDate, setViewingDate] = useState(() =>
     new Date().toISOString().slice(0, 10),
   );
+  const [weatherEnabled, setWeatherEnabled] = useState(false);
+  const [weatherByCircuit, setWeatherByCircuit] = useState({});
+  const [weatherStatus, setWeatherStatus] = useState("idle");
 
   useEffect(() => {
     if (!mapContainer.current) {
@@ -132,10 +163,76 @@ export default function Map() {
 
     markersRef.current.forEach(({ marker, circuitId }) => {
       const isActive = activeCircuitIds.has(circuitId);
+      const weatherBadge = marker.getElement().querySelector(".weather-badge");
+      const weather = weatherByCircuit[circuitId];
       marker.getElement().style.opacity = isActive ? "1" : "0";
       marker.getElement().style.pointerEvents = isActive ? "auto" : "none";
+      weatherBadge.hidden = !isActive || !weatherEnabled || !weather;
+      if (weather) {
+        weatherBadge.textContent = weather.icon;
+        weatherBadge.title = weather.label;
+      }
     });
-  }, [viewingDate]);
+  }, [viewingDate, weatherByCircuit, weatherEnabled]);
+
+  useEffect(() => {
+    if (!weatherEnabled) {
+      return undefined;
+    }
+
+    const activeCircuits = circuits.filter((circuit) =>
+      getActiveRounds(viewingDate).some(
+        (round) => round.circuitId === circuit.id,
+      ),
+    );
+    const controller = new AbortController();
+    const timeout = setTimeout(async () => {
+      setWeatherStatus("loading");
+      try {
+        const today = new Date().toISOString().slice(0, 10);
+        const isPast = viewingDate < today;
+        const weatherResults = await Promise.all(
+          activeCircuits.map(async (circuit) => {
+            const endpoint = isPast
+              ? "https://archive-api.open-meteo.com/v1/archive"
+              : "https://api.open-meteo.com/v1/forecast";
+            const params = new URLSearchParams({
+              latitude: circuit.lat.toString(),
+              longitude: circuit.lon.toString(),
+              start_date: viewingDate,
+              end_date: viewingDate,
+              daily: "weather_code,temperature_2m_max",
+              timezone: "auto",
+            });
+            const response = await fetch(`${endpoint}?${params}`, {
+              signal: controller.signal,
+            });
+            if (!response.ok) {
+              throw new Error(`Weather request failed: ${response.status}`);
+            }
+            const result = await response.json();
+            const code = result.daily?.weather_code?.[0];
+            const [label, icon] = weatherCodePresentation[code] || [
+              "Unknown conditions",
+              "?",
+            ];
+            return [circuit.id, { label, icon }];
+          }),
+        );
+        setWeatherByCircuit(Object.fromEntries(weatherResults));
+        setWeatherStatus("ready");
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          setWeatherStatus("error");
+        }
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [viewingDate, weatherEnabled]);
 
   return (
     <main className="relative h-screen w-full">
@@ -151,6 +248,16 @@ export default function Map() {
             setViewingDate(sliderValueToDate(Number(event.target.value)))
           }
         />
+        <span className="weather-control">
+          <input
+            type="checkbox"
+            checked={weatherEnabled}
+            onChange={(event) => setWeatherEnabled(event.target.checked)}
+          />
+          Show weather
+          {weatherEnabled && weatherStatus === "loading" && " (loading...)"}
+          {weatherEnabled && weatherStatus === "error" && " (unavailable)"}
+        </span>
       </label>
     </main>
   );
