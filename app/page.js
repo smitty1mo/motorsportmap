@@ -1,3 +1,5 @@
+import Map from "./components/Map";
+
 export default function Home() {
-  return <h1>Racing Around the World</h1>;
+  return <Map />;
 }
