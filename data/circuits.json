@@ -1,0 +1,1070 @@
+[
+  {
+    "id": "adelaide",
+    "name": "Adelaide Street Circuit",
+    "country": "Australia",
+    "lat": -34.9272,
+    "lon": 138.617,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "ain-diab",
+    "name": "Ain Diab",
+    "country": "Morocco",
+    "lat": 33.5786,
+    "lon": -7.6875,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "aintree",
+    "name": "Aintree",
+    "country": "United Kingdom",
+    "lat": 53.4769,
+    "lon": -2.94056,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "albert_park",
+    "name": "Albert Park Grand Prix Circuit",
+    "country": "Australia",
+    "lat": -37.8497,
+    "lon": 144.968,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "americas",
+    "name": "Circuit of the Americas",
+    "country": "United States",
+    "lat": 30.1328,
+    "lon": -97.6411,
+    "series": [
+      "f1",
+      "motogp",
+      "wec"
+    ]
+  },
+  {
+    "id": "anderstorp",
+    "name": "Scandinavian Raceway",
+    "country": "Sweden",
+    "lat": 57.2653,
+    "lon": 13.6042,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "avus",
+    "name": "AVUS",
+    "country": "Germany",
+    "lat": 52.4806,
+    "lon": 13.2514,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "bahrain",
+    "name": "Bahrain International Circuit",
+    "country": "Bahrain",
+    "lat": 26.0325,
+    "lon": 50.5106,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "baku",
+    "name": "Baku City Circuit",
+    "country": "Azerbaijan",
+    "lat": 40.3725,
+    "lon": 49.8533,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "boavista",
+    "name": "Circuito da Boavista",
+    "country": "Portugal",
+    "lat": 41.1705,
+    "lon": -8.67325,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "brands_hatch",
+    "name": "Brands Hatch",
+    "country": "United Kingdom",
+    "lat": 51.3569,
+    "lon": 0.263056,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "bremgarten",
+    "name": "Circuit Bremgarten",
+    "country": "Switzerland",
+    "lat": 46.9589,
+    "lon": 7.40194,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "buddh",
+    "name": "Buddh International Circuit",
+    "country": "India",
+    "lat": 28.3487,
+    "lon": 77.5331,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "catalunya",
+    "name": "Circuit de Barcelona-Catalunya",
+    "country": "Spain",
+    "lat": 41.57,
+    "lon": 2.26111,
+    "series": [
+      "f1",
+      "motogp",
+      "wec"
+    ]
+  },
+  {
+    "id": "charade",
+    "name": "Charade Circuit",
+    "country": "France",
+    "lat": 45.7472,
+    "lon": 3.03889,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "dallas",
+    "name": "Fair Park",
+    "country": "United States",
+    "lat": 32.7774,
+    "lon": -96.7587,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "detroit",
+    "name": "Detroit Street Circuit",
+    "country": "United States",
+    "lat": 42.3298,
+    "lon": -83.0401,
+    "series": [
+      "f1",
+      "indycar"
+    ]
+  },
+  {
+    "id": "dijon",
+    "name": "Dijon-Prenois",
+    "country": "France",
+    "lat": 47.3625,
+    "lon": 4.89913,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "donington",
+    "name": "Donington Park",
+    "country": "United Kingdom",
+    "lat": 52.8306,
+    "lon": -1.37528,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "essarts",
+    "name": "Rouen-Les-Essarts",
+    "country": "France",
+    "lat": 49.3306,
+    "lon": 1.00458,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "estoril",
+    "name": "Autódromo do Estoril",
+    "country": "Portugal",
+    "lat": 38.7506,
+    "lon": -9.39417,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "fuji",
+    "name": "Fuji Speedway",
+    "country": "Japan",
+    "lat": 35.3717,
+    "lon": 138.927,
+    "series": [
+      "f1",
+      "wec"
+    ]
+  },
+  {
+    "id": "galvez",
+    "name": "Autódromo Juan y Oscar Gálvez",
+    "country": "Argentina",
+    "lat": -34.6943,
+    "lon": -58.4593,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "george",
+    "name": "Prince George Circuit",
+    "country": "South Africa",
+    "lat": -33.0486,
+    "lon": 27.8736,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "hockenheimring",
+    "name": "Hockenheimring",
+    "country": "Germany",
+    "lat": 49.3278,
+    "lon": 8.56583,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "hungaroring",
+    "name": "Hungaroring",
+    "country": "Hungary",
+    "lat": 47.5789,
+    "lon": 19.2486,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "imola",
+    "name": "Autodromo Enzo e Dino Ferrari",
+    "country": "Italy",
+    "lat": 44.3439,
+    "lon": 11.7167,
+    "series": [
+      "f1",
+      "wec"
+    ]
+  },
+  {
+    "id": "indianapolis",
+    "name": "Indianapolis Motor Speedway",
+    "country": "United States",
+    "lat": 39.795,
+    "lon": -86.2347,
+    "series": [
+      "f1",
+      "indycar"
+    ]
+  },
+  {
+    "id": "interlagos",
+    "name": "Autódromo José Carlos Pace",
+    "country": "Brazil",
+    "lat": -23.7036,
+    "lon": -46.6997,
+    "series": [
+      "f1",
+      "wec"
+    ]
+  },
+  {
+    "id": "istanbul",
+    "name": "Istanbul Park",
+    "country": "Turkey",
+    "lat": 40.9517,
+    "lon": 29.405,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "jacarepagua",
+    "name": "Autódromo Internacional Nelson Piquet",
+    "country": "Brazil",
+    "lat": -22.9756,
+    "lon": -43.395,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "jarama",
+    "name": "Jarama",
+    "country": "Spain",
+    "lat": 40.6171,
+    "lon": -3.58558,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "jeddah",
+    "name": "Jeddah Corniche Circuit",
+    "country": "Saudi Arabia",
+    "lat": 21.6319,
+    "lon": 39.1044,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "jerez",
+    "name": "Circuito de Jerez",
+    "country": "Spain",
+    "lat": 36.7083,
+    "lon": -6.03417,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "kyalami",
+    "name": "Kyalami",
+    "country": "South Africa",
+    "lat": -25.9894,
+    "lon": 28.0767,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "las_vegas",
+    "name": "Las Vegas Street Circuit",
+    "country": "United States",
+    "lat": 36.1162,
+    "lon": -115.174,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "lemans",
+    "name": "Le Mans",
+    "country": "France",
+    "lat": 47.95,
+    "lon": 0.224231,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "long_beach",
+    "name": "Long Beach",
+    "country": "United States",
+    "lat": 33.7651,
+    "lon": -118.189,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "losail",
+    "name": "Losail International Circuit",
+    "country": "Qatar",
+    "lat": 25.49,
+    "lon": 51.4542,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "madring",
+    "name": "Madring",
+    "country": "Spain",
+    "lat": 40.46528,
+    "lon": -3.61528,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "magny_cours",
+    "name": "Circuit de Nevers Magny-Cours",
+    "country": "France",
+    "lat": 46.8642,
+    "lon": 3.16361,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "marina_bay",
+    "name": "Marina Bay Street Circuit",
+    "country": "Singapore",
+    "lat": 1.2914,
+    "lon": 103.864,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "miami",
+    "name": "Miami International Autodrome",
+    "country": "United States",
+    "lat": 25.9581,
+    "lon": -80.2389,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "monaco",
+    "name": "Circuit de Monaco",
+    "country": "Monaco",
+    "lat": 43.7347,
+    "lon": 7.42056,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "monsanto",
+    "name": "Monsanto Park Circuit",
+    "country": "Portugal",
+    "lat": 38.7197,
+    "lon": -9.20306,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "montjuic",
+    "name": "Montjuïc",
+    "country": "Spain",
+    "lat": 41.3664,
+    "lon": 2.15167,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "monza",
+    "name": "Autodromo Nazionale di Monza",
+    "country": "Italy",
+    "lat": 45.6156,
+    "lon": 9.28111,
+    "series": [
+      "f1",
+      "wec"
+    ]
+  },
+  {
+    "id": "mosport",
+    "name": "Mosport International Raceway",
+    "country": "Canada",
+    "lat": 44.0481,
+    "lon": -78.6756,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "mugello",
+    "name": "Autodromo Internazionale del Mugello",
+    "country": "Italy",
+    "lat": 43.9975,
+    "lon": 11.3719,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "nivelles",
+    "name": "Nivelles-Baulers",
+    "country": "Belgium",
+    "lat": 50.6211,
+    "lon": 4.32694,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "nurburgring",
+    "name": "Nürburgring",
+    "country": "Germany",
+    "lat": 50.3356,
+    "lon": 6.9475,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "okayama",
+    "name": "Okayama International Circuit",
+    "country": "Japan",
+    "lat": 34.915,
+    "lon": 134.221,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "pedralbes",
+    "name": "Circuit de Pedralbes",
+    "country": "Spain",
+    "lat": 41.3903,
+    "lon": 2.11667,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "pescara",
+    "name": "Pescara Circuit",
+    "country": "Italy",
+    "lat": 42.475,
+    "lon": 14.1508,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "phoenix",
+    "name": "Phoenix street circuit",
+    "country": "United States",
+    "lat": 33.4479,
+    "lon": -112.075,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "portimao",
+    "name": "Autódromo Internacional do Algarve",
+    "country": "Portugal",
+    "lat": 37.227,
+    "lon": -8.6267,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "red_bull_ring",
+    "name": "Red Bull Ring",
+    "country": "Austria",
+    "lat": 47.2197,
+    "lon": 14.7647,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "reims",
+    "name": "Reims-Gueux",
+    "country": "France",
+    "lat": 49.2542,
+    "lon": 3.93083,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "ricard",
+    "name": "Circuit Paul Ricard",
+    "country": "France",
+    "lat": 43.2506,
+    "lon": 5.79167,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "riverside",
+    "name": "Riverside International Raceway",
+    "country": "United States",
+    "lat": 33.937,
+    "lon": -117.273,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "rodriguez",
+    "name": "Autódromo Hermanos Rodríguez",
+    "country": "Mexico",
+    "lat": 19.4042,
+    "lon": -99.0907,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "sebring",
+    "name": "Sebring International Raceway",
+    "country": "United States",
+    "lat": 27.4547,
+    "lon": -81.3483,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "sepang",
+    "name": "Sepang International Circuit",
+    "country": "Malaysia",
+    "lat": 2.76083,
+    "lon": 101.738,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "shanghai",
+    "name": "Shanghai International Circuit",
+    "country": "China",
+    "lat": 31.3389,
+    "lon": 121.22,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "silverstone",
+    "name": "Silverstone Circuit",
+    "country": "United Kingdom",
+    "lat": 52.0786,
+    "lon": -1.01694,
+    "series": [
+      "f1",
+      "motogp"
+    ]
+  },
+  {
+    "id": "sochi",
+    "name": "Sochi Autodrom",
+    "country": "Russia",
+    "lat": 43.4057,
+    "lon": 39.9578,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "spa",
+    "name": "Circuit de Spa-Francorchamps",
+    "country": "Belgium",
+    "lat": 50.4372,
+    "lon": 5.97139,
+    "series": [
+      "f1",
+      "wec"
+    ]
+  },
+  {
+    "id": "suzuka",
+    "name": "Suzuka Circuit",
+    "country": "Japan",
+    "lat": 34.8431,
+    "lon": 136.541,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "tremblant",
+    "name": "Circuit Mont-Tremblant",
+    "country": "Canada",
+    "lat": 46.1877,
+    "lon": -74.6099,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "valencia",
+    "name": "Valencia Street Circuit",
+    "country": "Spain",
+    "lat": 39.4589,
+    "lon": -0.331667,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "vegas",
+    "name": "Las Vegas Strip Street Circuit",
+    "country": "United States",
+    "lat": 36.1147,
+    "lon": -115.173,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "villeneuve",
+    "name": "Circuit Gilles Villeneuve",
+    "country": "Canada",
+    "lat": 45.5,
+    "lon": -73.5228,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "watkins_glen",
+    "name": "Watkins Glen",
+    "country": "United States",
+    "lat": 42.3369,
+    "lon": -76.9272,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "yas_marina",
+    "name": "Yas Marina Circuit",
+    "country": "United Arab Emirates",
+    "lat": 24.4672,
+    "lon": 54.6031,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "yeongam",
+    "name": "Korean International Circuit",
+    "country": "South Korea",
+    "lat": 34.7333,
+    "lon": 126.417,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "zandvoort",
+    "name": "Circuit Park Zandvoort",
+    "country": "Netherlands",
+    "lat": 52.3888,
+    "lon": 4.54092,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "zeltweg",
+    "name": "Zeltweg",
+    "country": "Austria",
+    "lat": 47.2039,
+    "lon": 14.7478,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "zolder",
+    "name": "Zolder",
+    "country": "Belgium",
+    "lat": 50.9894,
+    "lon": 5.25694,
+    "series": [
+      "f1"
+    ]
+  },
+  {
+    "id": "chang",
+    "name": "Chang International Circuit",
+    "country": "Thailand",
+    "lat": 14.9628,
+    "lon": 103.085,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "goiania",
+    "name": "Autódromo Internacional Ayrton Senna",
+    "country": "Brazil",
+    "lat": -16.71806,
+    "lon": -49.19222,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "balaton_park",
+    "name": "Balaton Park Circuit",
+    "country": "Hungary",
+    "lat": 47.00806,
+    "lon": 18.19889,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "brno",
+    "name": "Automotodrom Brno",
+    "country": "Czechia",
+    "lat": 49.20472,
+    "lon": 16.45056,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "assen",
+    "name": "TT Circuit Assen",
+    "country": "Netherlands",
+    "lat": 52.957,
+    "lon": 6.5207,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "sachsenring",
+    "name": "Sachsenring",
+    "country": "Germany",
+    "lat": 50.79167,
+    "lon": 12.68889,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "motorland_aragon",
+    "name": "MotorLand Aragón",
+    "country": "Spain",
+    "lat": 41.07833,
+    "lon": -0.2075,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "misano",
+    "name": "Misano World Circuit Marco Simoncelli",
+    "country": "Italy",
+    "lat": 43.96139,
+    "lon": 12.68333,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "motegi",
+    "name": "Mobility Resort Motegi",
+    "country": "Japan",
+    "lat": 36.53333,
+    "lon": 140.22833,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "mandalika",
+    "name": "Pertamina Mandalika International Street Circuit",
+    "country": "Indonesia",
+    "lat": -8.89528,
+    "lon": 116.30583,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "phillip_island",
+    "name": "Phillip Island Grand Prix Circuit",
+    "country": "Australia",
+    "lat": -38.50306,
+    "lon": 145.23639,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "lusail",
+    "name": "Lusail International Circuit",
+    "country": "Qatar",
+    "lat": 25.49,
+    "lon": 51.45417,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "ricardo_tormo",
+    "name": "Circuit Ricardo Tormo",
+    "country": "Spain",
+    "lat": 39.48583,
+    "lon": -0.62806,
+    "series": [
+      "motogp"
+    ]
+  },
+  {
+    "id": "circuit_de_la_sarthe",
+    "name": "Circuit de la Sarthe",
+    "country": "France",
+    "lat": 47.95,
+    "lon": 0.2075,
+    "series": [
+      "wec"
+    ]
+  },
+  {
+    "id": "st_petersburg",
+    "name": "St. Petersburg Street Circuit",
+    "country": "United States",
+    "lat": 27.76639,
+    "lon": -82.62917,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "phoenix_raceway",
+    "name": "Phoenix Raceway",
+    "country": "United States",
+    "lat": 33.37475,
+    "lon": -112.3115,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "arlington",
+    "name": "Grand Prix of Arlington Street Circuit",
+    "country": "United States",
+    "lat": 32.7473,
+    "lon": -97.0945,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "barber",
+    "name": "Barber Motorsports Park",
+    "country": "United States",
+    "lat": 33.5325,
+    "lon": -86.61889,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "wwt_raceway",
+    "name": "World Wide Technology Raceway",
+    "country": "United States",
+    "lat": 38.6508,
+    "lon": -90.1353694,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "road_america",
+    "name": "Road America",
+    "country": "United States",
+    "lat": 43.7975,
+    "lon": -87.99389,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "mid_ohio",
+    "name": "Mid-Ohio Sports Car Course",
+    "country": "United States",
+    "lat": 40.6892944,
+    "lon": -82.6363722,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "nashville_superspeedway",
+    "name": "Nashville Superspeedway",
+    "country": "United States",
+    "lat": 36.0444194,
+    "lon": -86.4126194,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "portland_international_raceway",
+    "name": "Portland International Raceway",
+    "country": "United States",
+    "lat": 45.59694,
+    "lon": -122.69583,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "markham",
+    "name": "Streets of Markham",
+    "country": "Canada",
+    "lat": 43.8561,
+    "lon": -79.337,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "washington_dc",
+    "name": "Streets of Washington, D.C.",
+    "country": "United States",
+    "lat": 38.8892,
+    "lon": -77.0502,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "milwaukee_mile",
+    "name": "Milwaukee Mile",
+    "country": "United States",
+    "lat": 43.02,
+    "lon": -88.01,
+    "series": [
+      "indycar"
+    ]
+  },
+  {
+    "id": "laguna_seca",
+    "name": "WeatherTech Raceway Laguna Seca",
+    "country": "United States",
+    "lat": 36.58417,
+    "lon": -121.75361,
+    "series": [
+      "indycar"
+    ]
+  }
+]
