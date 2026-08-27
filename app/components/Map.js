@@ -6,7 +6,6 @@ import {
   Map as MapLibreMap,
   Marker,
   NavigationControl,
-  Popup,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import circuits from "../../data/circuits.json";
@@ -119,19 +118,16 @@ function createCircuitMarker(circuit) {
   weatherBadge.hidden = true;
   markerElement.append(weatherBadge);
 
+  if (circuit.series.length > 1) {
+    markerElement.classList.add("multi-series-marker");
+    const seriesCount = document.createElement("span");
+    seriesCount.className = "series-count";
+    seriesCount.textContent = circuit.series.length;
+    seriesCount.title = `${circuit.series.length} series`;
+    markerElement.append(seriesCount);
+  }
+
   return markerElement;
-}
-
-function createCircuitPopup(circuit) {
-  const popupContent = document.createElement("div");
-  const name = document.createElement("strong");
-  const country = document.createElement("span");
-
-  name.textContent = circuit.name;
-  country.textContent = circuit.country;
-  popupContent.append(name, country);
-
-  return popupContent;
 }
 
 export default function Map() {
@@ -142,6 +138,7 @@ export default function Map() {
   const [weatherEnabled, setWeatherEnabled] = useState(false);
   const [weatherByCircuit, setWeatherByCircuit] = useState({});
   const [weatherStatus, setWeatherStatus] = useState("idle");
+  const [selectedCircuit, setSelectedCircuit] = useState(null);
 
   useEffect(() => {
     if (!mapContainer.current) {
@@ -156,7 +153,72 @@ export default function Map() {
     });
 
     let usedFallbackStyle = false;
-    map.on("load", () => setMapStatus("ready"));
+    map.on("load", () => {
+      setMapStatus("ready");
+      if (map.getSource("circuit-clusters")) return;
+      map.addSource("circuit-clusters", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: circuits.map((circuit) => ({
+            type: "Feature",
+            properties: { name: circuit.name },
+            geometry: {
+              type: "Point",
+              coordinates: [circuit.lon, circuit.lat],
+            },
+          })),
+        },
+        cluster: true,
+        clusterMaxZoom: 5,
+        clusterRadius: 48,
+      });
+      map.addLayer({
+        id: "circuit-cluster-circles",
+        type: "circle",
+        source: "circuit-clusters",
+        filter: ["has", "point_count"],
+        paint: {
+          "circle-color": "#182126",
+          "circle-radius": [
+            "step",
+            ["get", "point_count"],
+            18,
+            10,
+            23,
+            30,
+            29,
+          ],
+          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 2,
+        },
+      });
+      map.addLayer({
+        id: "circuit-cluster-count",
+        type: "symbol",
+        source: "circuit-clusters",
+        filter: ["has", "point_count"],
+        layout: {
+          "text-field": ["get", "point_count_abbreviated"],
+          "text-size": 12,
+        },
+        paint: { "text-color": "#ffffff" },
+      });
+      map.on("click", "circuit-cluster-circles", (event) => {
+        const features = map.queryRenderedFeatures(event.point, {
+          layers: ["circuit-cluster-circles"],
+        });
+        const clusterId = features[0]?.properties?.cluster_id;
+        if (clusterId === undefined) return;
+        map
+          .getSource("circuit-clusters")
+          .getClusterExpansionZoom(clusterId, (error, zoom) => {
+            if (!error) {
+              map.easeTo({ center: features[0].geometry.coordinates, zoom });
+            }
+          });
+      });
+    });
     map.on("error", (event) => {
       if (!usedFallbackStyle && event.error) {
         usedFallbackStyle = true;
@@ -167,12 +229,24 @@ export default function Map() {
 
     map.addControl(new NavigationControl(), "top-right");
 
+    const updateMarkerScale = () => {
+      const scale = map.getZoom() < 3 ? "small" : map.getZoom() < 6 ? "medium" : "large";
+      markersRef.current.forEach(({ marker }) => {
+        marker.getElement().dataset.zoom = scale;
+        marker.getElement().style.visibility = map.getZoom() < 4 ? "hidden" : "visible";
+      });
+    };
+
     const markers = circuits.map((circuit) => {
       const markerElement = createCircuitMarker(circuit);
       const marker = new Marker({ element: markerElement })
         .setLngLat([circuit.lon, circuit.lat])
-        .setPopup(new Popup({ offset: 12 }).setDOMContent(createCircuitPopup(circuit)))
         .addTo(map);
+
+      markerElement.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setSelectedCircuit(circuit);
+      });
 
       return marker;
     });
@@ -180,10 +254,13 @@ export default function Map() {
       marker,
       circuitId: circuits[index].id,
     }));
+    map.on("zoom", updateMarkerScale);
+    updateMarkerScale();
 
     return () => {
       markers.forEach((marker) => marker.remove());
       markersRef.current = [];
+      map.off("zoom", updateMarkerScale);
       map.remove();
     };
   }, []);
@@ -287,6 +364,45 @@ export default function Map() {
         <Link href="/series/wec">WEC</Link>
         <Link href="/series/indycar">IndyCar</Link>
       </nav>
+      <section className="map-legend" aria-label="Series legend">
+        <strong>Series</strong>
+        {Object.entries(seriesColors).map(([series, color]) => (
+          <span key={series}>
+            <i style={{ backgroundColor: color }} />
+            {series === "f1" ? "F1" : series === "motogp" ? "MotoGP" : series === "indycar" ? "IndyCar" : "WEC"}
+          </span>
+        ))}
+      </section>
+      {getActiveRounds(viewingDate).length === 0 && (
+        <p className="empty-state">No races this week. Drag the timeline to explore the season.</p>
+      )}
+      {selectedCircuit && (
+        <aside className="circuit-panel" aria-label="Circuit details">
+          <button
+            className="panel-close"
+            type="button"
+            onClick={() => setSelectedCircuit(null)}
+            aria-label="Close circuit details"
+          >
+            x
+          </button>
+          <p className="panel-kicker">Circuit</p>
+          <h2>{selectedCircuit.name}</h2>
+          <p>{selectedCircuit.country}</p>
+          <div className="panel-series">
+            {selectedCircuit.series.map((series) => (
+              <span key={series} style={{ borderColor: seriesColors[series] }}>
+                {series === "f1" ? "F1" : series === "motogp" ? "MotoGP" : series === "indycar" ? "IndyCar" : "WEC"}
+              </span>
+            ))}
+          </div>
+          {weatherByCircuit[selectedCircuit.id] && weatherEnabled && (
+            <p className="panel-weather">
+              {weatherByCircuit[selectedCircuit.id].icon} {weatherByCircuit[selectedCircuit.id].label}
+            </p>
+          )}
+        </aside>
+      )}
       <label className="date-control">
         <span>
           Viewing week: {viewingDate} to {sliderValueToDate(dateToSliderValue(viewingDate) + 1)}
