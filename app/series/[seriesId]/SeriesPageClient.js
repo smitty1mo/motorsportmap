@@ -69,6 +69,7 @@ export default function SeriesPageClient({ seriesId, label, circuits, rounds }) 
     <main className="map-shell">
       <CalendarSidebar
         seriesId={seriesId}
+        key={seriesId}
         viewingDate={viewingDate}
         activeEventIds={activeEventIds}
         selectedEventId={selectedEventId}

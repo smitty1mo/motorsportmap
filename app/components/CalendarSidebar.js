@@ -85,7 +85,7 @@ export default function CalendarSidebar({
     <aside className="calendar-sidebar">
       <header className="calendar-sidebar-header">
         <p className="panel-kicker">Season schedule</p>
-        <h1>Race calendar</h1>
+        <h1>{seriesId ? `${seriesLabels[seriesId] || seriesId} calendar` : "Race calendar"}</h1>
         <p>
           {events.length} events{seriesId ? " in this series" : " across four series"}
         </p>

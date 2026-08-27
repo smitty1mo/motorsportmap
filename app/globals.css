@@ -36,6 +36,7 @@ body {
 
 .map-shell {
   display: flex;
+  min-height: 100dvh;
   overflow: hidden;
 }
 
@@ -51,6 +52,7 @@ body {
   width: 330px;
   flex: 0 0 330px;
   flex-direction: column;
+  height: 100dvh;
   min-height: 0;
   border-right: 1px solid rgb(24 33 38 / 15%);
   background: #f7f5ef;
