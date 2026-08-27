@@ -65,6 +65,10 @@ const seriesColors = {
   indycar: "#41a63c",
 };
 
+const currentCalendarCircuitIds = new Set(
+  calendar.map((round) => round.circuitId),
+);
+
 export function getActiveRounds(date) {
   const weekStart = getMonday(date).toISOString().slice(0, 10);
   const weekEnd = new Date(getMonday(date).getTime() + 6 * dayMilliseconds)
@@ -109,11 +113,13 @@ export default function Map() {
   const mapContainer = useRef(null);
   const markersRef = useRef([]);
   const viewingDateRef = useRef(null);
+  const showHistoricalRef = useRef(false);
   const [mapStatus, setMapStatus] = useState("loading");
   const [viewingDate, setViewingDate] = useState(getInitialViewingDate);
   const [selectedCircuit, setSelectedCircuit] = useState(null);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [sidebarMessage, setSidebarMessage] = useState("");
+  const [showHistoricalTracks, setShowHistoricalTracks] = useState(false);
 
   useEffect(() => {
     viewingDateRef.current = viewingDate;
@@ -161,7 +167,7 @@ export default function Map() {
         type: "geojson",
         data: {
           type: "FeatureCollection",
-          features: circuits.map((circuit) => ({
+          features: circuits.filter((circuit) => currentCalendarCircuitIds.has(circuit.id)).map((circuit) => ({
             type: "Feature",
             properties: { name: circuit.name },
             geometry: {
@@ -235,7 +241,9 @@ export default function Map() {
       markersRef.current.forEach(({ marker }) => {
         marker.getElement().dataset.zoom = scale;
         marker.getElement().style.visibility =
-          marker.getElement().dataset.active === "true" || map.getZoom() >= 4
+          showHistoricalRef.current ||
+          marker.getElement().dataset.historical !== "true" ||
+          map.getZoom() >= 4
             ? "visible"
             : "hidden";
       });
@@ -276,15 +284,21 @@ export default function Map() {
 
     markersRef.current.forEach(({ marker, circuitId }) => {
       const isActive = activeCircuitIds.has(circuitId);
+      const isHistorical = !currentCalendarCircuitIds.has(circuitId);
+      marker.getElement().dataset.historical = isHistorical ? "true" : "false";
       marker.getElement().style.opacity = isActive ? "1" : "0.28";
       marker.getElement().dataset.active = isActive ? "true" : "false";
       marker.getElement().style.pointerEvents = "auto";
       marker.getElement().style.visibility =
-        isActive || window.matchMedia("(min-width: 641px)").matches
+        showHistoricalTracks || !isHistorical
           ? "visible"
           : "hidden";
     });
-  }, [viewingDate]);
+  }, [viewingDate, showHistoricalTracks]);
+
+  useEffect(() => {
+    showHistoricalRef.current = showHistoricalTracks;
+  }, [showHistoricalTracks]);
 
   return (
     <main className="map-shell">
@@ -315,6 +329,14 @@ export default function Map() {
             {series === "f1" ? "F1" : series === "motogp" ? "MotoGP" : series === "indycar" ? "IndyCar" : "WEC"}
           </span>
         ))}
+        <button
+          className="historical-toggle"
+          type="button"
+          aria-expanded={showHistoricalTracks}
+          onClick={() => setShowHistoricalTracks((visible) => !visible)}
+        >
+          {showHistoricalTracks ? "Hide" : "Show"} historical tracks
+        </button>
       </section>
       {getActiveRounds(viewingDate).length === 0 && (
         <p className="empty-state">No races this week. Drag the timeline to explore the season.</p>
