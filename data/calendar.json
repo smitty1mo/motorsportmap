@@ -1,0 +1,506 @@
+[
+  {
+    "series": "f1",
+    "round": 1,
+    "circuitId": "albert_park",
+    "startDate": "2026-03-06",
+    "endDate": "2026-03-08"
+  },
+  {
+    "series": "f1",
+    "round": 2,
+    "circuitId": "shanghai",
+    "startDate": "2026-03-13",
+    "endDate": "2026-03-15"
+  },
+  {
+    "series": "f1",
+    "round": 3,
+    "circuitId": "suzuka",
+    "startDate": "2026-03-27",
+    "endDate": "2026-03-29"
+  },
+  {
+    "series": "f1",
+    "round": 4,
+    "circuitId": "bahrain",
+    "startDate": "2026-04-10",
+    "endDate": "2026-04-12"
+  },
+  {
+    "series": "f1",
+    "round": 5,
+    "circuitId": "jeddah",
+    "startDate": "2026-04-17",
+    "endDate": "2026-04-19"
+  },
+  {
+    "series": "f1",
+    "round": 6,
+    "circuitId": "miami",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-03"
+  },
+  {
+    "series": "f1",
+    "round": 7,
+    "circuitId": "villeneuve",
+    "startDate": "2026-05-22",
+    "endDate": "2026-05-24"
+  },
+  {
+    "series": "f1",
+    "round": 8,
+    "circuitId": "monaco",
+    "startDate": "2026-06-05",
+    "endDate": "2026-06-07"
+  },
+  {
+    "series": "f1",
+    "round": 9,
+    "circuitId": "catalunya",
+    "startDate": "2026-06-12",
+    "endDate": "2026-06-14"
+  },
+  {
+    "series": "f1",
+    "round": 10,
+    "circuitId": "red_bull_ring",
+    "startDate": "2026-06-26",
+    "endDate": "2026-06-28"
+  },
+  {
+    "series": "f1",
+    "round": 11,
+    "circuitId": "silverstone",
+    "startDate": "2026-07-03",
+    "endDate": "2026-07-05"
+  },
+  {
+    "series": "f1",
+    "round": 12,
+    "circuitId": "spa",
+    "startDate": "2026-07-17",
+    "endDate": "2026-07-19"
+  },
+  {
+    "series": "f1",
+    "round": 13,
+    "circuitId": "hungaroring",
+    "startDate": "2026-07-24",
+    "endDate": "2026-07-26"
+  },
+  {
+    "series": "f1",
+    "round": 14,
+    "circuitId": "zandvoort",
+    "startDate": "2026-08-21",
+    "endDate": "2026-08-23"
+  },
+  {
+    "series": "f1",
+    "round": 15,
+    "circuitId": "monza",
+    "startDate": "2026-09-04",
+    "endDate": "2026-09-06"
+  },
+  {
+    "series": "f1",
+    "round": 16,
+    "circuitId": "madring",
+    "startDate": "2026-09-11",
+    "endDate": "2026-09-13"
+  },
+  {
+    "series": "f1",
+    "round": 17,
+    "circuitId": "baku",
+    "startDate": "2026-09-24",
+    "endDate": "2026-09-26"
+  },
+  {
+    "series": "f1",
+    "round": 18,
+    "circuitId": "marina_bay",
+    "startDate": "2026-10-09",
+    "endDate": "2026-10-11"
+  },
+  {
+    "series": "f1",
+    "round": 19,
+    "circuitId": "americas",
+    "startDate": "2026-10-23",
+    "endDate": "2026-10-25"
+  },
+  {
+    "series": "f1",
+    "round": 20,
+    "circuitId": "rodriguez",
+    "startDate": "2026-10-30",
+    "endDate": "2026-11-01"
+  },
+  {
+    "series": "f1",
+    "round": 21,
+    "circuitId": "interlagos",
+    "startDate": "2026-11-06",
+    "endDate": "2026-11-08"
+  },
+  {
+    "series": "f1",
+    "round": 22,
+    "circuitId": "vegas",
+    "startDate": "2026-11-19",
+    "endDate": "2026-11-21"
+  },
+  {
+    "series": "f1",
+    "round": 23,
+    "circuitId": "losail",
+    "startDate": "2026-11-27",
+    "endDate": "2026-11-29"
+  },
+  {
+    "series": "f1",
+    "round": 24,
+    "circuitId": "yas_marina",
+    "startDate": "2026-12-04",
+    "endDate": "2026-12-06"
+  },
+  {
+    "series": "motogp",
+    "round": 1,
+    "circuitId": "chang",
+    "startDate": "2026-02-27",
+    "endDate": "2026-03-01"
+  },
+  {
+    "series": "motogp",
+    "round": 2,
+    "circuitId": "goiania",
+    "startDate": "2026-03-20",
+    "endDate": "2026-03-22"
+  },
+  {
+    "series": "motogp",
+    "round": 3,
+    "circuitId": "americas",
+    "startDate": "2026-03-27",
+    "endDate": "2026-03-29"
+  },
+  {
+    "series": "motogp",
+    "round": 4,
+    "circuitId": "jerez",
+    "startDate": "2026-04-24",
+    "endDate": "2026-04-26"
+  },
+  {
+    "series": "motogp",
+    "round": 5,
+    "circuitId": "lemans",
+    "startDate": "2026-05-08",
+    "endDate": "2026-05-10"
+  },
+  {
+    "series": "motogp",
+    "round": 6,
+    "circuitId": "catalunya",
+    "startDate": "2026-05-15",
+    "endDate": "2026-05-17"
+  },
+  {
+    "series": "motogp",
+    "round": 7,
+    "circuitId": "mugello",
+    "startDate": "2026-05-29",
+    "endDate": "2026-05-31"
+  },
+  {
+    "series": "motogp",
+    "round": 8,
+    "circuitId": "balaton_park",
+    "startDate": "2026-06-05",
+    "endDate": "2026-06-07"
+  },
+  {
+    "series": "motogp",
+    "round": 9,
+    "circuitId": "brno",
+    "startDate": "2026-06-19",
+    "endDate": "2026-06-21"
+  },
+  {
+    "series": "motogp",
+    "round": 10,
+    "circuitId": "assen",
+    "startDate": "2026-06-26",
+    "endDate": "2026-06-28"
+  },
+  {
+    "series": "motogp",
+    "round": 11,
+    "circuitId": "sachsenring",
+    "startDate": "2026-07-10",
+    "endDate": "2026-07-12"
+  },
+  {
+    "series": "motogp",
+    "round": 12,
+    "circuitId": "silverstone",
+    "startDate": "2026-08-07",
+    "endDate": "2026-08-09"
+  },
+  {
+    "series": "motogp",
+    "round": 13,
+    "circuitId": "motorland_aragon",
+    "startDate": "2026-08-28",
+    "endDate": "2026-08-30"
+  },
+  {
+    "series": "motogp",
+    "round": 14,
+    "circuitId": "misano",
+    "startDate": "2026-09-11",
+    "endDate": "2026-09-13"
+  },
+  {
+    "series": "motogp",
+    "round": 15,
+    "circuitId": "red_bull_ring",
+    "startDate": "2026-09-18",
+    "endDate": "2026-09-20"
+  },
+  {
+    "series": "motogp",
+    "round": 16,
+    "circuitId": "motegi",
+    "startDate": "2026-10-02",
+    "endDate": "2026-10-04"
+  },
+  {
+    "series": "motogp",
+    "round": 17,
+    "circuitId": "mandalika",
+    "startDate": "2026-10-09",
+    "endDate": "2026-10-11"
+  },
+  {
+    "series": "motogp",
+    "round": 18,
+    "circuitId": "phillip_island",
+    "startDate": "2026-10-23",
+    "endDate": "2026-10-25"
+  },
+  {
+    "series": "motogp",
+    "round": 19,
+    "circuitId": "sepang",
+    "startDate": "2026-10-30",
+    "endDate": "2026-11-01"
+  },
+  {
+    "series": "motogp",
+    "round": 20,
+    "circuitId": "losail",
+    "startDate": "2026-11-06",
+    "endDate": "2026-11-08"
+  },
+  {
+    "series": "motogp",
+    "round": 21,
+    "circuitId": "portimao",
+    "startDate": "2026-11-13",
+    "endDate": "2026-11-15"
+  },
+  {
+    "series": "motogp",
+    "round": 22,
+    "circuitId": "ricardo_tormo",
+    "startDate": "2026-11-20",
+    "endDate": "2026-11-22"
+  },
+  {
+    "series": "wec",
+    "round": 1,
+    "circuitId": "imola",
+    "startDate": "2026-04-19",
+    "endDate": "2026-04-19"
+  },
+  {
+    "series": "wec",
+    "round": 2,
+    "circuitId": "spa",
+    "startDate": "2026-05-09",
+    "endDate": "2026-05-09"
+  },
+  {
+    "series": "wec",
+    "round": 3,
+    "circuitId": "circuit_de_la_sarthe",
+    "startDate": "2026-06-13",
+    "endDate": "2026-06-13"
+  },
+  {
+    "series": "wec",
+    "round": 4,
+    "circuitId": "interlagos",
+    "startDate": "2026-07-12",
+    "endDate": "2026-07-12"
+  },
+  {
+    "series": "wec",
+    "round": 5,
+    "circuitId": "americas",
+    "startDate": "2026-09-06",
+    "endDate": "2026-09-06"
+  },
+  {
+    "series": "wec",
+    "round": 6,
+    "circuitId": "fuji",
+    "startDate": "2026-09-27",
+    "endDate": "2026-09-27"
+  },
+  {
+    "series": "wec",
+    "round": 7,
+    "circuitId": "catalunya",
+    "startDate": "2026-10-18",
+    "endDate": "2026-10-18"
+  },
+  {
+    "series": "wec",
+    "round": 8,
+    "circuitId": "monza",
+    "startDate": "2026-11-08",
+    "endDate": "2026-11-08"
+  },
+  {
+    "series": "indycar",
+    "round": 1,
+    "circuitId": "st_petersburg",
+    "startDate": "2026-03-01",
+    "endDate": "2026-03-01"
+  },
+  {
+    "series": "indycar",
+    "round": 2,
+    "circuitId": "phoenix_raceway",
+    "startDate": "2026-03-07",
+    "endDate": "2026-03-07"
+  },
+  {
+    "series": "indycar",
+    "round": 3,
+    "circuitId": "arlington",
+    "startDate": "2026-03-15",
+    "endDate": "2026-03-15"
+  },
+  {
+    "series": "indycar",
+    "round": 4,
+    "circuitId": "barber",
+    "startDate": "2026-03-29",
+    "endDate": "2026-03-29"
+  },
+  {
+    "series": "indycar",
+    "round": 5,
+    "circuitId": "long_beach",
+    "startDate": "2026-04-19",
+    "endDate": "2026-04-19"
+  },
+  {
+    "series": "indycar",
+    "round": 6,
+    "circuitId": "indianapolis",
+    "startDate": "2026-05-09",
+    "endDate": "2026-05-09"
+  },
+  {
+    "series": "indycar",
+    "round": 7,
+    "circuitId": "indianapolis",
+    "startDate": "2026-05-24",
+    "endDate": "2026-05-24"
+  },
+  {
+    "series": "indycar",
+    "round": 8,
+    "circuitId": "detroit",
+    "startDate": "2026-05-31",
+    "endDate": "2026-05-31"
+  },
+  {
+    "series": "indycar",
+    "round": 9,
+    "circuitId": "wwt_raceway",
+    "startDate": "2026-06-07",
+    "endDate": "2026-06-07"
+  },
+  {
+    "series": "indycar",
+    "round": 10,
+    "circuitId": "road_america",
+    "startDate": "2026-06-21",
+    "endDate": "2026-06-21"
+  },
+  {
+    "series": "indycar",
+    "round": 11,
+    "circuitId": "mid_ohio",
+    "startDate": "2026-07-05",
+    "endDate": "2026-07-05"
+  },
+  {
+    "series": "indycar",
+    "round": 12,
+    "circuitId": "nashville_superspeedway",
+    "startDate": "2026-07-20",
+    "endDate": "2026-07-20"
+  },
+  {
+    "series": "indycar",
+    "round": 13,
+    "circuitId": "portland_international_raceway",
+    "startDate": "2026-08-09",
+    "endDate": "2026-08-09"
+  },
+  {
+    "series": "indycar",
+    "round": 14,
+    "circuitId": "markham",
+    "startDate": "2026-08-16",
+    "endDate": "2026-08-16"
+  },
+  {
+    "series": "indycar",
+    "round": 15,
+    "circuitId": "washington_dc",
+    "startDate": "2026-08-23",
+    "endDate": "2026-08-23"
+  },
+  {
+    "series": "indycar",
+    "round": 16,
+    "circuitId": "milwaukee_mile",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-29"
+  },
+  {
+    "series": "indycar",
+    "round": 17,
+    "circuitId": "milwaukee_mile",
+    "startDate": "2026-08-30",
+    "endDate": "2026-08-30"
+  },
+  {
+    "series": "indycar",
+    "round": 18,
+    "circuitId": "laguna_seca",
+    "startDate": "2026-09-06",
+    "endDate": "2026-09-06"
+  }
+]

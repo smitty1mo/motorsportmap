@@ -9,6 +9,7 @@ import {
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import circuits from "../../data/circuits.json";
+import calendar from "../../data/calendar.json";
 
 const seriesColors = {
   f1: "#e10600",
@@ -16,6 +17,12 @@ const seriesColors = {
   wec: "#f5a623",
   indycar: "#41a63c",
 };
+
+export function getActiveRounds(date) {
+  return calendar.filter(
+    (round) => round.startDate <= date && round.endDate >= date,
+  );
+}
 
 function createCircuitMarker(circuit) {
   const markerElement = document.createElement("button");
@@ -66,6 +73,11 @@ export default function Map() {
 
     map.addControl(new NavigationControl(), "top-right");
 
+    const viewingDate = new Date().toISOString().slice(0, 10);
+    const activeCircuitIds = new Set(
+      getActiveRounds(viewingDate).map((round) => round.circuitId),
+    );
+
     const markers = circuits.map((circuit) => {
       const marker = new Marker({
         element: createCircuitMarker(circuit),
@@ -77,6 +89,10 @@ export default function Map() {
           ),
         )
         .addTo(map);
+
+      marker.getElement().style.display = activeCircuitIds.has(circuit.id)
+        ? ""
+        : "none";
 
       return marker;
     });
