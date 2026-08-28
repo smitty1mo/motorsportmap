@@ -311,7 +311,6 @@ export default function Map() {
       />
       <section className="map-stage">
       <div ref={mapContainer} className="map-canvas" />
-      {mapStatus === "loading" && <p className="map-status">Loading map...</p>}
       {mapStatus === "fallback" && (
         <p className="map-status">Using backup map style</p>
       )}

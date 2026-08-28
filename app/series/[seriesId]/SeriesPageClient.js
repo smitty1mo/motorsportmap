@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import CalendarSidebar, { eventKey } from "../../components/CalendarSidebar";
+import CalendarSidebar, {
+  eventKey,
+  getNearestEvent,
+} from "../../components/CalendarSidebar";
 import SeriesMap from "../../components/SeriesMap";
 
 const dayMilliseconds = 24 * 60 * 60 * 1000;
@@ -56,13 +59,24 @@ export default function SeriesPageClient({ seriesId, label, circuits, rounds }) 
     getInitialViewingDate(rounds),
   );
   const [selectedEventId, setSelectedEventId] = useState(null);
+  const [selectedCircuitId, setSelectedCircuitId] = useState(null);
   const activeEventIds = getActiveRounds(rounds, viewingDate).map(eventKey);
   const seasonStart = rounds[0].startDate;
   const seasonEnd = rounds[rounds.length - 1].endDate;
 
   function handleEventSelect(event) {
     setSelectedEventId(eventKey(event));
+    setSelectedCircuitId(event.circuitId);
     setViewingDate(getMonday(event.startDate).toISOString().slice(0, 10));
+  }
+
+  function handleCircuitSelect(circuit) {
+    const event = getNearestEvent(circuit.id, viewingDate, seriesId);
+    setSelectedCircuitId(circuit.id);
+    if (event) {
+      setSelectedEventId(eventKey(event));
+      setViewingDate(getMonday(event.startDate).toISOString().slice(0, 10));
+    }
   }
 
   return (
@@ -76,8 +90,14 @@ export default function SeriesPageClient({ seriesId, label, circuits, rounds }) 
         onEventSelect={handleEventSelect}
       />
       <section className="map-stage">
-        <SeriesMap circuits={circuits} rounds={rounds} seriesId={seriesId} />
-        <header className="series-header">
+        <SeriesMap
+          circuits={circuits}
+          rounds={rounds}
+          selectedCircuitId={selectedCircuitId}
+          onCircuitSelect={handleCircuitSelect}
+          seriesId={seriesId}
+        />
+        <header className="series-header series-page-controls">
           <Link href="/">Back to world map</Link>
           <h1>{label} season route</h1>
           <p>{rounds.length} rounds connected in calendar order</p>

@@ -415,10 +415,23 @@ body {
 
 .series-header {
   display: block;
-  right: 16px;
-  left: auto;
+  right: auto;
+  left: 16px;
   min-width: 220px;
   color: #171717;
+}
+
+.series-page-controls {
+  top: 16px;
+}
+
+.series-date-control {
+  top: 132px;
+  right: auto;
+  left: 16px;
+  bottom: auto;
+  width: min(320px, calc(100% - 32px));
+  margin: 0;
 }
 
 .series-header h1 {
@@ -503,5 +516,11 @@ body {
     bottom: 12px;
     left: 12px;
     padding: 11px 13px;
+  }
+
+  .series-date-control {
+    top: auto;
+    bottom: 12px;
+    width: auto;
   }
 }

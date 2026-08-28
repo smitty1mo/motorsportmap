@@ -15,8 +15,20 @@ const seriesColors = {
   indycar: "#41a63c",
 };
 
-export default function SeriesMap({ circuits, rounds, seriesId }) {
+export default function SeriesMap({
+  circuits,
+  rounds,
+  seriesId,
+  selectedCircuitId,
+  onCircuitSelect,
+}) {
   const mapContainer = useRef(null);
+  const markersRef = useRef([]);
+  const circuitSelectRef = useRef(onCircuitSelect);
+
+  useEffect(() => {
+    circuitSelectRef.current = onCircuitSelect;
+  }, [onCircuitSelect]);
 
   useEffect(() => {
     if (!mapContainer.current) {
@@ -44,6 +56,11 @@ export default function SeriesMap({ circuits, rounds, seriesId }) {
       markerElement.className = "series-marker";
       markerElement.style.backgroundColor = color;
       markerElement.title = circuit.name;
+      markerElement.setAttribute("role", "button");
+      markerElement.setAttribute("tabindex", "0");
+      markerElement.addEventListener("click", () =>
+        circuitSelectRef.current(circuit),
+      );
       markers.push(
         new Marker({ element: markerElement })
           .setLngLat([circuit.lon, circuit.lat])
@@ -76,11 +93,24 @@ export default function SeriesMap({ circuits, rounds, seriesId }) {
       });
     });
 
+    markersRef.current = markers.map((marker, index) => ({
+      marker,
+      circuitId: rounds[index]?.circuitId,
+    }));
+
     return () => {
       markers.forEach((marker) => marker.remove());
+      markersRef.current = [];
       map.remove();
     };
   }, [circuits, rounds, seriesId]);
+
+  useEffect(() => {
+    markersRef.current.forEach(({ marker, circuitId }) => {
+      marker.getElement().style.opacity =
+        !selectedCircuitId || circuitId === selectedCircuitId ? "1" : "0.2";
+    });
+  }, [selectedCircuitId]);
 
   return <div ref={mapContainer} className="h-full w-full" />;
 }
